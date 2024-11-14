@@ -1,4 +1,3 @@
-import Image from "next/image";
 import localFont from "next/font/local";
 import Link from "next/link";
 const geistSans = localFont({
@@ -26,32 +25,32 @@ export default function Home() {
           
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 max-w-5xl w-full mt-8">
             <div className="p-6 border rounded-lg">
-              <h3 className="text-lg font-semibold mb-2">Smart Scheduling</h3>
+              <h3 className="text-lg font-semibold mb-2">AI-Powered Scheduling</h3>
               <p className="text-muted-foreground">
-                Automatically find conflict-free schedules that fit your preferences and requirements.
+                Our AI analyzes your preferences and creates optimized schedules, considering professor ratings and course conflicts.
               </p>
             </div>
             
             <div className="p-6 border rounded-lg">
-              <h3 className="text-lg font-semibold mb-2">Real-Time Availability</h3>
+              <h3 className="text-lg font-semibold mb-2">Professor Insights</h3>
               <p className="text-muted-foreground">
-                See up-to-date course availability and waitlist information.
+                Make informed decisions with integrated RateMyProfessor data and reviews for each instructor.
               </p>
             </div>
             
             <div className="p-6 border rounded-lg">
-              <h3 className="text-lg font-semibold mb-2">Degree Progress</h3>
+              <h3 className="text-lg font-semibold mb-2">Smart Recommendations</h3>
               <p className="text-muted-foreground">
-                Track your progress towards your degree requirements as you plan.
+                Get personalized course suggestions based on historical student data and professor ratings.
               </p>
             </div>
           </div>
 
           <div className="flex gap-4 mt-8">
-            <Link href="/schedule" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-3 rounded-md font-medium">
+            <Link href="/schedule" className="relative px-8 py-3 rounded-md font-medium text-white overflow-hidden transition-all duration-300 hover:shadow-[0_0_25px_rgba(37,99,235,0.8)] before:absolute before:inset-0 before:bg-gradient-to-r before:from-pink-500 before:via-purple-500 before:to-blue-500 before:animate-[gradient_3s_ease_infinite] before:bg-[length:200%_200%] before:opacity-100 hover:before:opacity-100 before:transition-opacity before:-z-10">
               Get Started
             </Link>
-            <Link href="#" className="border border-input hover:bg-accent hover:text-accent-foreground px-8 py-3 rounded-md font-medium">
+            <Link href="/about" className="border border-white hover:bg-white hover:text-primary px-8 py-3 rounded-md font-medium transition-colors duration-500">
               Learn More
             </Link>
           </div>

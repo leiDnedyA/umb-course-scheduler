@@ -2,12 +2,12 @@ import { Card } from "@/components/ui/card";
 
 export default function SchedulePage() {
   const dummyRequiredCourses = [
-    "CS 420: Advanced Meme Theory",
-    "PHIL 101: Why Did The Chicken Cross The Road?",
-    "MATH 314: Pizza Pi Calculations",
-    "BIO 299: Understanding Cat Behavior on TikTok",
-    "ENG 255: Professional Tweet Writing",
-    "PHYS 202: Quantum Coffee Brewing"
+    "CS 110: Introduction to Computing",
+    "CS 240: Programming Methodology",
+    "MATH 140: Calculus I",
+    "ENGL 101: Freshman English I",
+    "PHYS 113: General Physics I",
+    "HIST 101: Western Civilization I"
   ];
 
   return (
