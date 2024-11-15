@@ -21,7 +21,7 @@ export default function SchedulePage() {
 
   const dummyRequiredCourses = [
     "CS 110: Introduction to Computing",
-    "CS 240: Programming Methodology", 
+    "CS 240: Programming Methodology",
     "MATH 140: Calculus I",
     "ENGL 101: Freshman English I",
     "PHYS 113: General Physics I",
@@ -93,6 +93,31 @@ export default function SchedulePage() {
           <p className="text-xl text-muted-foreground">
             Create your perfect semester schedule by selecting courses and visualizing your weekly calendar.
           </p>
+          <div className="flex justify-center gap-4">
+            <label htmlFor="new-audit-upload" className="px-4 py-2 text-sm border rounded-md hover:bg-accent transition-colors cursor-pointer flex items-center gap-2">
+              <input
+                id="new-audit-upload"
+                type="file"
+                accept=".pdf"
+                onChange={handleFileUpload}
+                className="hidden"
+              />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+              </svg>
+              Upload New Degree Audit
+            </label>
+            <button
+              onClick={() => {
+                localStorage.removeItem('auditData');
+                setAuditData(null);
+                setAuditSubmitted(false);
+              }}
+              className="px-4 py-2 text-sm border rounded-md hover:bg-accent transition-colors"
+            >
+              Reset
+            </button>
+          </div>
         </div>
 
         {/* Schedule Display Area */}
