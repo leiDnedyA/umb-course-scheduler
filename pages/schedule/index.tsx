@@ -5,28 +5,44 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { parseAudit } from "@/lib/parse_audit";
 
+interface AuditData {
+  data: {
+    entry_data: any[];
+    req_data: any[];
+  };
+}
+
 export default function SchedulePage() {
   const [auditSubmitted, setAuditSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [auditData, setAuditData] = useState<any>(null);
+  const [requiredCourses, setRequiredCourses] = useState<any[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const resetAudit = () => {
+    localStorage.removeItem('auditData');
+    setAuditData(null);
+    setRequiredCourses([]);
+    setAuditSubmitted(false);
+  }
+
+  const loadAuditData = (data: AuditData) => {
+    setAuditData(data);
+    if (data.data.req_data) {
+      setRequiredCourses(data.data.req_data);
+      setAuditSubmitted(true);
+    } else {
+      resetAudit();
+      alert("Failed to parse audit. Please try again.");
+    }
+  }
 
   useEffect(() => {
     const savedAuditData = localStorage.getItem('auditData');
     if (savedAuditData) {
-      setAuditData(JSON.parse(savedAuditData));
-      setAuditSubmitted(true);
+      loadAuditData(JSON.parse(savedAuditData));
     }
   }, []);
-
-  const dummyRequiredCourses = [
-    "CS 110: Introduction to Computing",
-    "CS 240: Programming Methodology",
-    "MATH 140: Calculus I",
-    "ENGL 101: Freshman English I",
-    "PHYS 113: General Physics I",
-    "HIST 101: Western Civilization I"
-  ];
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     console.log("Uploading file...");
@@ -40,9 +56,8 @@ export default function SchedulePage() {
           fileInputRef.current.value = '';
         }
       } else {
-        setAuditData(data);
+        loadAuditData(data);
         localStorage.setItem('auditData', JSON.stringify(data));
-        setAuditSubmitted(true);
       }
       setIsLoading(false);
     }
@@ -82,7 +97,7 @@ export default function SchedulePage() {
           </div>
         </div>
       </main>
-    );// 
+    );
   }
 
   return (
@@ -108,11 +123,7 @@ export default function SchedulePage() {
               Upload New Degree Audit
             </label>
             <button
-              onClick={() => {
-                localStorage.removeItem('auditData');
-                setAuditData(null);
-                setAuditSubmitted(false);
-              }}
+              onClick={resetAudit}
               className="px-4 py-2 text-sm border rounded-md hover:bg-accent transition-colors"
             >
               Reset
@@ -131,13 +142,13 @@ export default function SchedulePage() {
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="p-6">
             <h2 className="text-2xl font-semibold mb-4">Required Courses</h2>
-            <div className="grid gap-2">
-              {dummyRequiredCourses.map((course, index) => (
+            <div className="grid gap-2 overflow-y-auto min-h-[300px] max-h-[400px] pr-2">
+              {requiredCourses.map((course, index) => (
                 <div
                   key={index}
                   className="p-3 border rounded-md hover:bg-accent transition-colors"
                 >
-                  {course}
+                  {course.course}: {course.title} ({course.credits} credits)
                 </div>
               ))}
             </div>
