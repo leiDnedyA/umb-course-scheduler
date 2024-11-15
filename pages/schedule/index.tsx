@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,16 @@ import { parseAudit } from "@/lib/parse_audit";
 export default function SchedulePage() {
   const [auditSubmitted, setAuditSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [auditData, setAuditData] = useState<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const savedAuditData = localStorage.getItem('auditData');
+    if (savedAuditData) {
+      setAuditData(JSON.parse(savedAuditData));
+      setAuditSubmitted(true);
+    }
+  }, []);
 
   const dummyRequiredCourses = [
     "CS 110: Introduction to Computing",
@@ -31,6 +40,8 @@ export default function SchedulePage() {
           fileInputRef.current.value = '';
         }
       } else {
+        setAuditData(data);
+        localStorage.setItem('auditData', JSON.stringify(data));
         setAuditSubmitted(true);
       }
       setIsLoading(false);
