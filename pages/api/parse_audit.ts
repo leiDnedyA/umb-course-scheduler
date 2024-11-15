@@ -7,7 +7,74 @@ export const config = {
     bodyParser: false,
   },
 };
-
+/**
+ * @swagger
+ * /api/parse_audit:
+ *   post:
+ *     summary: Parse a degree audit PDF file
+ *     description: Uploads a degree audit PDF file and returns parsed course and requirement data
+ *     tags:
+ *       - Audit
+ *     consumes:
+ *       - multipart/form-data
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *                 description: The degree audit PDF file to parse
+ *     responses:
+ *       200:
+ *         description: Successfully parsed audit data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     entry_data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                     req_data:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *       400:
+ *         description: Bad request - No file uploaded or invalid audit data
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       405:
+ *         description: Method not allowed
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
