@@ -47,10 +47,10 @@ export default function Home() {
           </div>
 
           <div className="flex gap-4 mt-8">
-            <Link href="/schedule" className="relative px-8 py-3 rounded-md font-medium text-white overflow-hidden transition-all duration-300 hover:shadow-[0_0_25px_rgba(37,99,235,0.8)] before:absolute before:inset-0 before:bg-gradient-to-r before:from-pink-500 before:via-purple-500 before:to-blue-500 before:animate-[gradient_3s_ease_infinite] before:bg-[length:200%_200%] before:opacity-100 hover:before:opacity-100 before:transition-opacity before:-z-10">
+            <Link href="/schedule" className="relative px-8 py-3 rounded-md font-medium overflow-hidden transition-all duration-300 bg-muted hover:shadow-[0_0_25px_rgba(37,99,235,0.8)] before:absolute before:inset-0 before:bg-gradient-to-r before:from-pink-500 before:via-purple-500 before:to-blue-500 before:animate-[gradient_3s_ease_infinite] before:bg-[length:200%_200%] before:opacity-100 hover:before:opacity-100 before:transition-opacity before:-z-10">
               Get Started
             </Link>
-            <Link href="/about" className="border border-white hover:bg-white hover:text-primary px-8 py-3 rounded-md font-medium transition-colors duration-500">
+            <Link href="/about" className="border border-primary hover:bg-primary hover:text-secondary px-8 py-3 rounded-md font-medium transition-colors duration-500">
               Learn More
             </Link>
           </div>
