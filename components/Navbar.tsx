@@ -10,6 +10,9 @@ export default function Navbar() {
             UMass Boston Scheduler
           </Link>
           <div className="flex items-center gap-4">
+            <Link href="/" className="text-foreground hover:text-gray-400 transition-colors">
+              Home
+            </Link>
             <Link href="/schedule" className="text-foreground hover:text-gray-400 transition-colors">
               Schedule
             </Link>
