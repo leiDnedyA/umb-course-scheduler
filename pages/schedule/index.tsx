@@ -4,6 +4,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { parseAudit } from "@/lib/parse_audit";
+import { getSession } from "next-auth/react";
 
 interface AuditData {
   data: {
@@ -202,4 +203,23 @@ export default function SchedulePage() {
       </div>
     </main>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context)
+
+  console.log(session)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, // Pass data to the page
+  };
 }
